@@ -11,6 +11,7 @@ describe('<TagEditor>', () => {
 			<TagEditor
 				allTags={[tagName]}
 				name={tagName}
+				count={1}
 				onChangeColor={jest.fn()}
 				onChangeName={jest.fn()}
 				{...props}

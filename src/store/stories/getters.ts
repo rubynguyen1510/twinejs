@@ -196,6 +196,36 @@ export function storyTags(stories: Story[]) {
 	).sort();
 }
 
+export function passageTagsFrequency(story: Story) {
+	const tagPassageCounts: { [key: string]: number } = {};
+  
+	story.passages.forEach(passage => {
+	  (passage.tags||[]).forEach(tag => {
+		if (!tagPassageCounts[tag]) {
+		  tagPassageCounts[tag] = 1; 
+		} else {
+		  tagPassageCounts[tag] += 1; 
+		}
+	  });
+	});
+  
+	return tagPassageCounts;
+  }
+
+export function storyTagsFrequency(stories: Story[]) {
+    const tagFrequency: {[key: string]: number} = {};
+
+    stories.forEach(story => {
+        if (story.tags) {
+            story.tags.forEach(tag => {
+                tagFrequency[tag] = (tagFrequency[tag] || 0) + 1;
+            });
+        }
+    });
+
+    return tagFrequency;
+}
+
 export function storyWithId(stories: Story[], storyId: string) {
 	const result = stories.find(s => s.id === storyId);
 

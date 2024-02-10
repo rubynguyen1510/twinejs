@@ -11,12 +11,13 @@ export interface TagEditorProps {
 	allTags: string[];
 	color?: Color;
 	name: string;
+	count: number;
 	onChangeColor: (color: Color) => void;
 	onChangeName: (name: string) => void;
 }
 
 export const TagEditor: React.FC<TagEditorProps> = props => {
-	const {allTags, color, name, onChangeColor, onChangeName} = props;
+	const {allTags, color, name, count, onChangeColor, onChangeName} = props;
 	const [newName, setNewName] = React.useState(name);
 	const {t} = useTranslation();
 
@@ -33,6 +34,7 @@ export const TagEditor: React.FC<TagEditorProps> = props => {
 			<span className={classNames('tag-name', `color-${props.color}`)}>
 				{props.name}
 			</span>
+			<span className="tag-count">{props.count}</span>
 			<PromptButton
 				icon={<IconWriting />}
 				label={t('common.rename')}
