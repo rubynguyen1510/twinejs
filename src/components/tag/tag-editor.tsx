@@ -34,7 +34,6 @@ export const TagEditor: React.FC<TagEditorProps> = props => {
 			<span className={classNames('tag-name', `color-${props.color}`)}>
 				{props.name}
 			</span>
-			<span className="tag-count">{props.count}</span>
 			<PromptButton
 				icon={<IconWriting />}
 				label={t('common.rename')}
@@ -54,6 +53,7 @@ export const TagEditor: React.FC<TagEditorProps> = props => {
 			>
 				{t('common.color')}
 			</TextSelect>
+			<span className="tag-count">{`${count} ${count > 1 ? 'passages' : 'passage'}`}</span>
 		</div>
 	);
 };
