@@ -17,7 +17,7 @@ export const StoryTagsDialog: React.FC<StoryTagsDialogProps> = props => {
 	const {t} = useTranslation();
 
 	const tags = storyTags(stories);
-	const newTags = storyTagsFrequency(stories);
+	const tagCountsInStories = storyTagsFrequency(stories);
 
 	function handleChangeColor(tagName: string, color: Color) {
 		prefsDispatch(
@@ -44,7 +44,7 @@ export const StoryTagsDialog: React.FC<StoryTagsDialogProps> = props => {
 							color={prefs.storyTagColors[tag]}
 							key={tag}
 							name={tag}
-							count={newTags[tag]}
+							count={tagCountsInStories[tag]}
 							onChangeColor={color => handleChangeColor(tag, color)}
 							onChangeName={newName => handleChangeTagName(tag, newName)}
 						/>

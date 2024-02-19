@@ -200,15 +200,15 @@ export function passageTagsFrequency(story: Story) {
 	const tagPassageCounts: { [key: string]: number } = {};
   
 	story.passages.forEach(passage => {
-	  (passage.tags||[]).forEach(tag => {
-		if (!tagPassageCounts[tag]) {
-		  tagPassageCounts[tag] = 1; 
-		} else {
-		  tagPassageCounts[tag] += 1; 
-		}
-	  });
+		if (passage.tags) {
+			passage.tags.forEach(tag=>{
+				if (!tagPassageCounts[tag]) {
+					tagPassageCounts[tag] = 1; 
+			  	} else {
+					tagPassageCounts[tag] += 1; 
+			  	}
+		})};
 	});
-  
 	return tagPassageCounts;
   }
 

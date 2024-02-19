@@ -6,7 +6,8 @@ import {
 	storyWithName,
 	storyTags,
 	passagesMatchingSearch,
-	passagesMatchingFuzzySearch
+	passagesMatchingFuzzySearch,
+	passageTagsFrequency
 } from '../getters';
 import {Passage, Story} from '../stories.types';
 import {fakePassage, fakeStory} from '../../../test-util';
@@ -273,6 +274,31 @@ describe('storyPassageTags()', () => {
 		story.passages[1].tags = ['a'];
 		expect(storyPassageTags(story)).toEqual(['a']);
 	});
+});
+
+describe('passageTagsFrequency()', () => {
+	it('returns an object with correct counts of frequency of tags across all passages in a story', () =>{
+		const story = fakeStory(3);
+		story.passages[0].tags = ['tag1', 'tag2'];
+		story.passages[1].tags = ['tag2', 'tag3'];
+		story.passages[2].tags = ['tag1'];
+
+		const expectedTagsFrequency ={
+			tag1: 2,
+			tag2: 2,
+			tag3: 1,
+		};
+
+	   expect(passageTagsFrequency(story)).toEqual(expectedTagsFrequency);
+	});
+
+	it('returns empty object if no tags present', () => {
+		const story = fakeStory(2);
+		const expectedTagsFrequency ={};
+
+		expect(passageTagsFrequency(story)).toEqual(expectedTagsFrequency);
+	})
+
 });
 
 describe('storyTags()', () => {

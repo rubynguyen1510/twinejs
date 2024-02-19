@@ -25,7 +25,7 @@ export const PassageTagsDialog: React.FC<PassageTagsDialogProps> = props => {
 
 	const story = storyWithId(stories, storyId);
 	const tags = storyPassageTags(story);
-	const newTags = passageTagsFrequency(story);
+	const tagCountsInStory = passageTagsFrequency(story);
 	function handleChangeColor(tagName: string, color: Color) {
 		dispatch(
 			setTagColor(story, tagName, color),
@@ -55,7 +55,7 @@ export const PassageTagsDialog: React.FC<PassageTagsDialogProps> = props => {
 							color={story.tagColors[tag]}
 							key={tag}
 							name={tag}
-							count={newTags[tag]}
+							count={tagCountsInStory[tag]}
 							onChangeColor={color => handleChangeColor(tag, color)}
 							onChangeName={newName => handleChangeTagName(tag, newName)}
 						/>
