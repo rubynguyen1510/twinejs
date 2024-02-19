@@ -8,7 +8,7 @@ import {
 	storyWithId,
 	renamePassageTag,
 	storyPassageTags,
-	passageTagsFrequency
+	passageTagsFrequencies
 } from '../store/stories';
 import {useUndoableStoriesContext} from '../store/undoable-stories';
 import {Color} from '../util/color';
@@ -25,7 +25,7 @@ export const PassageTagsDialog: React.FC<PassageTagsDialogProps> = props => {
 
 	const story = storyWithId(stories, storyId);
 	const tags = storyPassageTags(story);
-	const tagCountsInStory = passageTagsFrequency(story);
+	const tagCountsInStory = passageTagsFrequencies(story);
 	function handleChangeColor(tagName: string, color: Color) {
 		dispatch(
 			setTagColor(story, tagName, color),

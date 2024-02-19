@@ -3,7 +3,7 @@ import {useTranslation} from 'react-i18next';
 import {DialogCard} from '../components/container/dialog-card';
 import {CardContent} from '../components/container/card';
 import {DialogComponentProps} from './dialogs.types';
-import {renameStoryTag, storyTags, storyTagsFrequency} from '../store/stories';
+import {renameStoryTag, storyTags, storyTagsFrequencies} from '../store/stories';
 import {setPref, usePrefsContext} from '../store/prefs';
 import {useUndoableStoriesContext} from '../store/undoable-stories';
 import {Color} from '../util/color';
@@ -17,7 +17,7 @@ export const StoryTagsDialog: React.FC<StoryTagsDialogProps> = props => {
 	const {t} = useTranslation();
 
 	const tags = storyTags(stories);
-	const tagCountsInStories = storyTagsFrequency(stories);
+	const tagCountsInStories = storyTagsFrequencies(stories);
 
 	function handleChangeColor(tagName: string, color: Color) {
 		prefsDispatch(
