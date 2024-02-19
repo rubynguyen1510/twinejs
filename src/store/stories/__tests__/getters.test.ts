@@ -7,7 +7,8 @@ import {
 	storyTags,
 	passagesMatchingSearch,
 	passagesMatchingFuzzySearch,
-	passageTagsFrequency
+	passageTagsFrequencies,
+	storyTagsFrequencies
 } from '../getters';
 import {Passage, Story} from '../stories.types';
 import {fakePassage, fakeStory} from '../../../test-util';
@@ -276,29 +277,53 @@ describe('storyPassageTags()', () => {
 	});
 });
 
-describe('passageTagsFrequency()', () => {
-	it('returns an object with correct counts of frequency of tags across all passages in a story', () =>{
+describe('passageTagsFrequencies()', () => {
+	it('returns an object with correct counts of frequencies of tags across all passages in a story', () =>{
 		const story = fakeStory(3);
 		story.passages[0].tags = ['tag1', 'tag2'];
 		story.passages[1].tags = ['tag2', 'tag3'];
 		story.passages[2].tags = ['tag1'];
 
-		const expectedTagsFrequency ={
+		const expectedTagsFrequencies ={
 			tag1: 2,
 			tag2: 2,
 			tag3: 1,
 		};
 
-	   expect(passageTagsFrequency(story)).toEqual(expectedTagsFrequency);
+	   expect(passageTagsFrequencies(story)).toEqual(expectedTagsFrequencies);
 	});
 
 	it('returns empty object if no tags present', () => {
 		const story = fakeStory(2);
-		const expectedTagsFrequency ={};
+		const expectedTagsFrequencies ={};
 
-		expect(passageTagsFrequency(story)).toEqual(expectedTagsFrequency);
+		expect(passageTagsFrequencies(story)).toEqual(expectedTagsFrequencies);
 	})
 
+});
+
+describe('storyTagsFrequencies()', () => {
+	it('returns correct frequencies of tags of all stories', () => {
+		const stories = [fakeStory(), fakeStory()];
+
+		stories[0].tags = ['c', 'a'];
+		stories[1].tags = ['a', 'b'];
+
+		const expectedStoriesTagsFrequencies ={
+			a: 2,
+			b: 1,
+			c: 1,
+		};
+
+		expect(storyTagsFrequencies(stories)).toEqual(expectedStoriesTagsFrequencies);
+	});
+
+	it('returns empty object with no tags', () => {
+		const stories = [fakeStory(), fakeStory()];
+		const expectedStoriesTagsFrequencies = {};
+
+		expect(storyTagsFrequencies(stories)).toEqual(expectedStoriesTagsFrequencies);
+	});
 });
 
 describe('storyTags()', () => {

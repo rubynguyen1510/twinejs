@@ -159,6 +159,22 @@ export function storyPassageTags(story: Story) {
 	).sort();
 }
 
+export function passageTagsFrequencies(story: Story) {
+	const tagPassageCounts: { [key: string]: number } = {};
+  
+	story.passages.forEach(passage => {
+		if (passage.tags) {
+			passage.tags.forEach(tag=>{
+				if (!tagPassageCounts[tag]) {
+					tagPassageCounts[tag] = 1; 
+			  	} else {
+					tagPassageCounts[tag] += 1; 
+			  	}
+		})};
+	});
+	return tagPassageCounts;
+  }
+  
 export function storyStats(story: Story) {
 	const links = story.passages.reduce<string[]>(
 		(links, passage) => [
@@ -196,23 +212,7 @@ export function storyTags(stories: Story[]) {
 	).sort();
 }
 
-export function passageTagsFrequency(story: Story) {
-	const tagPassageCounts: { [key: string]: number } = {};
-  
-	story.passages.forEach(passage => {
-		if (passage.tags) {
-			passage.tags.forEach(tag=>{
-				if (!tagPassageCounts[tag]) {
-					tagPassageCounts[tag] = 1; 
-			  	} else {
-					tagPassageCounts[tag] += 1; 
-			  	}
-		})};
-	});
-	return tagPassageCounts;
-  }
-
-export function storyTagsFrequency(stories: Story[]) {
+export function storyTagsFrequencies(stories: Story[]) {
     const tagFrequency: {[key: string]: number} = {};
 
     stories.forEach(story => {
