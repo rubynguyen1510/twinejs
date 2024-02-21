@@ -7,12 +7,12 @@ import {TagEditor, TagEditorProps} from '../tag-editor';
 describe('<TagEditor>', () => {
 	async function renderComponent(props?: Partial<TagEditorProps>) {
 		const tagName = lorem.word();
-		const defaultCount = 1;
+		const mockCount = 1;
 		const result = render(
 			<TagEditor
 				allTags={[tagName]}
 				name={tagName}
-				count={defaultCount}
+				count={mockCount}
 				onChangeColor={jest.fn()}
 				onChangeName={jest.fn()}
 				{...props}
