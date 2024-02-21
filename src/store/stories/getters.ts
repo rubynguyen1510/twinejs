@@ -159,7 +159,7 @@ export function storyPassageTags(story: Story) {
 	).sort();
 }
 
-export function passageTagsFrequencies(story: Story) {
+export function passageTagFrequencies(story: Story) {
 	const tagPassageCounts: { [key: string]: number } = {};
   
 	story.passages.forEach(passage => {
@@ -212,18 +212,18 @@ export function storyTags(stories: Story[]) {
 	).sort();
 }
 
-export function storyTagsFrequencies(stories: Story[]) {
-    const tagFrequency: {[key: string]: number} = {};
+export function storyTagFrequencies(stories: Story[]) {
+    const tagFrequencies: {[key: string]: number} = {};
 
     stories.forEach(story => {
         if (story.tags) {
             story.tags.forEach(tag => {
-                tagFrequency[tag] = (tagFrequency[tag] || 0) + 1;
+                tagFrequencies[tag] = (tagFrequencies[tag] || 0) + 1;
             });
         }
     });
 
-    return tagFrequency;
+    return tagFrequencies;
 }
 
 export function storyWithId(stories: Story[], storyId: string) {
