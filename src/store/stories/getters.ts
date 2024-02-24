@@ -160,6 +160,12 @@ export function storyPassageTags(story: Story) {
 }
 
 export function passageTagFrequencies(story: Story) {
+	const memo: { [key: string]: { [key: string]: number } } = {};
+	const storyKey = story.id;
+	if (memo[storyKey]){
+		return memo[storyKey];
+	}
+
 	const tagPassageCounts: { [key: string]: number } = {};
   
 	story.passages.forEach(passage => {
@@ -172,6 +178,7 @@ export function passageTagFrequencies(story: Story) {
 			  	}
 		})};
 	});
+	memo[storyKey]=tagPassageCounts;
 	return tagPassageCounts;
   }
   
@@ -213,6 +220,11 @@ export function storyTags(stories: Story[]) {
 }
 
 export function storyTagFrequencies(stories: Story[]) {
+	const memo: { [key: string]: { [key: string]: number } } = {};
+	const storiesKey = JSON.stringify(stories);
+	if (memo[storiesKey]){
+		return memo[storiesKey]
+	}
     const tagFrequencies: {[key: string]: number} = {};
 
     stories.forEach(story => {
@@ -222,7 +234,7 @@ export function storyTagFrequencies(stories: Story[]) {
             });
         }
     });
-
+	memo[storiesKey] = tagFrequencies;
     return tagFrequencies;
 }
 

@@ -9,6 +9,6 @@ export const TagEditor: React.FC<TagEditorProps> = props => (
 		<button onClick={() => props.onChangeName('mock-new-name')}>
 			onChangeName
 		</button>
-		<span>{`${props.count} ${props.count > 1 ? 'passages' : 'passage'}`}</span>
+		<span data-testid="count">{props.count}</span>
 	</div>
 );
